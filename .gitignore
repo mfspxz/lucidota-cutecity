@@ -15,3 +15,8 @@ hidden/uptime.log
 .idea/
 *~
 .DS_Store
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+state/
