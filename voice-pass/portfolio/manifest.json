@@ -1,0 +1,13 @@
+{
+ "area": "portfolio",
+ "staged_at": "2026-10-07T04:47:49.297077+00:00",
+ "files": {
+  "cute-city.md": "sha256:de35c6239effe7185856803bb6081de403e498f718650a5630d970d029f49e65",
+  "noter.md": "sha256:2aa032f5a31ad196656bc5cedfb8a8bdc0066dca5c62b1a246272ee8d3a78490",
+  "cute-city-website.md": "sha256:6565df60629e8ace5bd1cc2c28db69f7594b1dd1f06126306cd337bcc91857c3"
+ },
+ "voice_passed": false,
+ "passed_by": null,
+ "passed_at": null,
+ "note": null
+}

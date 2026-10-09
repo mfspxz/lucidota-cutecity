@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ODIN — C2 Map (private prototype, staged)</title>
+<!--
+  ODIN C2 map frontend (city-012). STAGED — not deployed, not public.
+  PRIVATE BY DEFAULT: this page talks to the secret-gated ctcc-router
+  (/positions, /devices). It must NEVER be served on a public route without
+  a secret gate or Cloudflare Access. The ?key= gate is interim; Access
+  email-allowlist is the target (per privacy directive).
+-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0e14; color: #e6edf3; font-family: system-ui, sans-serif; }
+  #map { height: 100%; }
+  #hud { position: absolute; top: 12px; left: 12px; z-index: 1000; background: rgba(11,14,20,.85);
+         border: 1px solid #30363d; border-radius: 8px; padding: 10px 14px; font-size: 13px; }
+  #hud .stale { color: #f0883e; } #hud .fresh { color: #3fb950; }
+  #gate { position: absolute; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center;
+          background: #0b0e14; }
+  #gate form { display: flex; gap: 8px; }
+  #gate input { background: #161b22; border: 1px solid #30363d; color: #e6edf3; padding: 8px 12px; border-radius: 6px; }
+  #gate button { background: #1f6feb; border: 0; color: #fff; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="hud" hidden>
+  <div><strong>ODIN</strong> · <span id="devcount">0</span> devices</div>
+  <div id="freshness"></div>
+  <div id="updated"></div>
+</div>
+<div id="gate">
+  <form id="gateform">
+    <input id="key" type="password" placeholder="router key" autocomplete="off" />
+    <button type="submit">Enter</button>
+  </form>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+"use strict";
+/* Expected ctcc-router contract (CoT architect, 2026-10-06; EVENT-SCHEMA.md):
+   GET {ROUTER}/positions?format=cot&key=... -> {ok,format:"cot",version,count,events:[{uid,type,how,time,start,stale,point:{lat,lon},detail:{"odin:device":...}}]}
+   GET {ROUTER}/devices?key=...   -> {devices: [{id, name, ...}]}
+   Key is sent as ?key= (interim, per privacy directive) — never in page source.
+*/
+const ROUTER = "https://ctcc-router.cutecity.workers.dev";
+const params = new URLSearchParams(location.search);
+let KEY = params.get("key") || sessionStorage.getItem("odin_key") || "";
+
+const map = L.map("map").setView([49.2827, -123.1207], 12); // Vancouver
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19, attribution: "&copy; OpenStreetMap contributors"
+}).addTo(map);
+const layer = L.layerGroup().addTo(map);
+
+async function authed(path) {
+  const r = await fetch(ROUTER + path + (path.includes("?") ? "&" : "?") + "key=" + encodeURIComponent(KEY));
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return r.json();
+}
+
+/* CoT adapter (2026-10-08): the router's ?format=cot returns
+   {ok,format,version,count,events:[...]} where each event is
+   {uid,type,how,time,start,stale,point:{lat,lon},detail:{"odin:device":...}}.
+   This is the ONLY translation layer — rendering below consumes
+   plain {device,lat,lon,ts} points. */
+function cotToPoints(events) {
+  return (events || []).map(e => {
+    const d = e.detail || {}, pt = e.point || {};
+    return {
+      device: d["odin:device"] || e.uid || "?",
+      lat: pt.lat, lon: pt.lon,
+      ts: e.time
+    };
+  });
+}
+async function authedCot(path) {
+  const r = await authed(path + (path.includes("?") ? "&" : "?") + "format=cot");
+  return cotToPoints(r.events);
+}
+
+async function refresh() {
+  try {
+    const pts = await authedCot("/positions");
+    layer.clearLayers();
+    let latest = 0;
+    pts.forEach(p => {
+      if (typeof p.lat !== "number" || typeof p.lon !== "number") return;
+      const t = Date.parse(p.ts || p.time || 0) || 0;
+      if (t > latest) latest = t;
+      L.circleMarker([p.lat, p.lon], { radius: 6, color: "#f778ba", fillOpacity: .8 })
+        .bindPopup(`<b>${String(p.device || "?")}</b><br>${new Date(t).toLocaleString()}`)
+        .addTo(layer);
+    });
+    document.getElementById("devcount").textContent = pts.length;
+    const age = Date.now() - latest;
+    const f = document.getElementById("freshness");
+    f.innerHTML = latest ? (age < 120000
+      ? `<span class="fresh">● live (${Math.round(age/1000)}s ago)</span>`
+      : `<span class="stale">● stale (${Math.round(age/60000)}m ago)</span>`) : "no positions";
+    document.getElementById("updated").textContent = "updated " + new Date().toLocaleTimeString();
+    document.getElementById("hud").hidden = false;
+  } catch (e) {
+    document.getElementById("freshness").textContent = "error: " + e.message;
+    document.getElementById("hud").hidden = false;
+  }
+}
+
+document.getElementById("gateform").addEventListener("submit", ev => {
+  ev.preventDefault();
+  KEY = document.getElementById("key").value;
+  sessionStorage.setItem("odin_key", KEY); // session only, never persisted to disk
+  document.getElementById("gate").style.display = "none";
+  refresh();
+  setInterval(refresh, 30000);
+});
+if (KEY) {
+  document.getElementById("gate").style.display = "none";
+  document.getElementById("hud").hidden = false;
+  refresh();
+  setInterval(refresh, 30000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# build artifacts
+target/
+# downloaded worker binary (build artifact, re-downloadable)
+cute-city-worker-download.bin
+# runtime/operational state
+hidden/uptime-state.json
+hidden/uptime.log
+# secrets
+.env
+.env.*
+# rust scratch
+*.redb
+# editor noise
+.vscode/
+.idea/
+*~
+.DS_Store

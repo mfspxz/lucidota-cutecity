@@ -1,0 +1,11 @@
+{
+ "area": "directory",
+ "staged_at": "2026-10-07T04:47:50.806815+00:00",
+ "files": {
+  "index.json": "sha256:59ff35101b4844ce0c8393101dc605a9ec3ff5308fc6bd551e2a4ef639045326"
+ },
+ "voice_passed": false,
+ "passed_by": null,
+ "passed_at": null,
+ "note": null
+}

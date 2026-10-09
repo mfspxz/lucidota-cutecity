@@ -1,0 +1,48 @@
+{
+  "count": 6,
+  "releases": [
+    {
+      "label": "Android · APK",
+      "platform": "android",
+      "published": false,
+      "state": "PACKAGING",
+      "version": ""
+    },
+    {
+      "label": "Linux · x86_64",
+      "platform": "linux-x64",
+      "published": false,
+      "state": "PACKAGING",
+      "version": ""
+    },
+    {
+      "label": "Linux · ARM64",
+      "platform": "linux-arm64",
+      "published": false,
+      "state": "PLANNED",
+      "version": ""
+    },
+    {
+      "label": "Windows · EXE",
+      "platform": "windows",
+      "published": false,
+      "state": "PLANNED",
+      "version": ""
+    },
+    {
+      "label": "macOS · universal",
+      "platform": "macos",
+      "published": false,
+      "state": "PLANNED",
+      "version": ""
+    },
+    {
+      "label": "iOS",
+      "platform": "ios",
+      "published": false,
+      "state": "EXPLORING",
+      "version": ""
+    }
+  ],
+  "version": "v1"
+}

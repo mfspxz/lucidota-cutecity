@@ -1,0 +1,14 @@
+[package]
+name = "cute-pub"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "cute-pub"
+path = "src/bin/cute-pub.rs"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+cute-cms = { path = "../cute-cms" }
+cute-feed = { path = "../cute-feed" }

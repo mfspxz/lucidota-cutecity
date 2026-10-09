@@ -1,0 +1,70 @@
+{
+  "count": 8,
+  "districts": [
+    {
+      "blurb": "",
+      "href": "",
+      "id": "first-address",
+      "name": "",
+      "state": "open",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "release-desk",
+      "name": "",
+      "state": "open",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "harbor",
+      "name": "",
+      "state": "open",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "krampus",
+      "name": "",
+      "state": "open",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "library",
+      "name": "",
+      "state": "rumour",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "void",
+      "name": "",
+      "state": "rumour",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "clowncil",
+      "name": "",
+      "state": "mist",
+      "updated_by": "system"
+    },
+    {
+      "blurb": "",
+      "href": "",
+      "id": "parkwreck",
+      "name": "",
+      "state": "mist",
+      "updated_by": "system"
+    }
+  ],
+  "version": "v1"
+}

@@ -1,0 +1,13 @@
+{
+ "area": "blog",
+ "staged_at": "2026-10-07T04:47:50.175258+00:00",
+ "files": {
+  "why-most-of-the-city-is-mist.md": "sha256:07064ebc243ef9ef82ea1a4daa4f14f38195cf740bcf0077cda9abcadef10432",
+  "how-city-hall-runs-the-website.md": "sha256:cc94d9e680355f770dbd73dc3e8f4086f6f0790aacb645556fa3e1e55f297ef9",
+  "the-doors-open-when-they-work.md": "sha256:eb71d4cf91d999b100a726c3f5f3d84d1052a1b1aaee6c6e34210365057ffbb4"
+ },
+ "voice_passed": false,
+ "passed_by": null,
+ "passed_at": null,
+ "note": null
+}

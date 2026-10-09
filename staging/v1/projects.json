@@ -1,0 +1,33 @@
+{
+  "count": 3,
+  "projects": [
+    {
+      "client_permission": false,
+      "id": 1,
+      "slug": "cute-city",
+      "sort_order": 10,
+      "status": "BETA",
+      "title": "Cute City — the website & world",
+      "visibility": "public"
+    },
+    {
+      "client_permission": false,
+      "id": 2,
+      "slug": "noter",
+      "sort_order": 20,
+      "status": "LAB",
+      "title": "Noter / Percyphon — field notebook",
+      "visibility": "public"
+    },
+    {
+      "client_permission": false,
+      "id": 931,
+      "slug": "cute-city-website",
+      "sort_order": 10,
+      "status": "BETA",
+      "title": "Cute City — The First Address",
+      "visibility": "public"
+    }
+  ],
+  "version": "v1"
+}

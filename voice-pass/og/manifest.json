@@ -1,0 +1,17 @@
+{
+ "area": "og",
+ "staged_at": "2026-10-07T04:41:46.110498+00:00",
+ "files": {
+  "index.html": "sha256:aae800837875093ae0e46156249a2b72db828b591e0d2c12c1d86d52b26c3b78",
+  "blog.html": "sha256:df04fdff9ec74c80b120ce8d40fa5bd3f6482e9bddf317346847047b8ece24bb",
+  "portfolio.html": "sha256:c3184110d831b0fca686330883293168081f89f6ef0286afee1af11f630079de",
+  "releases.html": "sha256:4e35373d5f3166643d6efcece9a596f02c85bd8fc5cc5a0bbb9ede811b380e21",
+  "blog-the-doors-open-when-they-work.html": "sha256:72d2c4259d2b329e7a53014fc686cd19fffe357ddf0066d8f001496c46103c35",
+  "blog-why-most-of-the-city-is-mist.html": "sha256:d0fa8ea5deb9c76ae9b8051841c4d0a4d87591b45fedf37dbc2cc43533ed232a",
+  "blog-how-city-hall-runs-the-website.html": "sha256:36a815ab85339ab323378a6ec7b85ce38449409eb7c51516af9a6d64bcf54565"
+ },
+ "voice_passed": false,
+ "passed_by": null,
+ "passed_at": null,
+ "note": null
+}

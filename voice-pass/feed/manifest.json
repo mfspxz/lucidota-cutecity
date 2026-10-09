@@ -1,0 +1,13 @@
+{
+ "area": "feed",
+ "staged_at": "2026-10-07T04:40:08.852063+00:00",
+ "files": {
+  "feed.json": "sha256:d2e182ed87349e4b411430d6ff5f1249490214704828714d58577c82e845d876",
+  "feed.xml": "sha256:1c5d90ea3e9d1fa70e35b7286024030b12eb8292d6c78b628eac7cf742ce394a",
+  "sitemap.xml": "sha256:141bacd6cd9f2dbd6282a23309800fcb9a0d6780acf2fde130ce776f92e3485d"
+ },
+ "voice_passed": false,
+ "passed_by": null,
+ "passed_at": null,
+ "note": null
+}

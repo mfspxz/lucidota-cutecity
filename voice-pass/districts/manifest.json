@@ -1,0 +1,13 @@
+{
+ "area": "districts",
+ "staged_at": "2026-10-07T04:47:51.750021+00:00",
+ "files": {
+  "SITE-A.md": "sha256:0a126834b61cf33c6951b4e68ebeb73af221dd21a4580e13716eb3cf05d4b929",
+  "SITE-B.md": "sha256:c173fe3eaa9adccbc9c0e773967b50a801267acf0325706c80a6c4e18e12eb6c",
+  "SITE-C.md": "sha256:7ae34fa9fcdf381b53af8119ca110e8aab1b22aa9561f2d398a0ce7b86674932"
+ },
+ "voice_passed": false,
+ "passed_by": null,
+ "passed_at": null,
+ "note": null
+}

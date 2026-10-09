@@ -1,0 +1,52 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Cute City — Dispatches",
+  "home_page_url": "https://cutecity.cc/blog",
+  "feed_url": "https://cutecity.cc/feed.json",
+  "description": "Street dispatches from Cute City.",
+  "authors": [
+    {
+      "name": "Zackary Camoran"
+    }
+  ],
+  "items": [
+    {
+      "id": "https://cutecity.cc/blog/how-city-hall-runs-the-website",
+      "url": "https://cutecity.cc/blog/how-city-hall-runs-the-website",
+      "title": "How City Hall Runs the Website",
+      "summary": "The admin console is not a bolted-on dashboard — it is the one path every public claim on this site has to go through.",
+      "date_published": "2026-08-18T07:14:01Z",
+      "tags": [
+        "meta",
+        "cute-city",
+        "city-hall",
+        "architecture"
+      ],
+      "author_name": "Cute City"
+    },
+    {
+      "id": "https://cutecity.cc/blog/why-most-of-the-city-is-mist",
+      "url": "https://cutecity.cc/blog/why-most-of-the-city-is-mist",
+      "title": "Why Most of the City Is Mist",
+      "summary": "An honest map shows what is real and hides what is not ready — it does not fake either one.",
+      "date_published": "2026-08-18T07:13:49Z",
+      "tags": [
+        "meta",
+        "cute-city",
+        "provenance"
+      ],
+      "author_name": "Cute City"
+    },
+    {
+      "id": "https://cutecity.cc/blog/the-doors-open-when-they-work",
+      "url": "https://cutecity.cc/blog/the-doors-open-when-they-work",
+      "title": "The doors open when they work",
+      "date_published": "2026-08-16T00:00:00Z",
+      "tags": [
+        "cute-city",
+        "build-in-public"
+      ],
+      "author_name": "Cute City"
+    }
+  ]
+}
