@@ -1,0 +1,58 @@
+{
+  "codon": "gd",
+  "name": "guard-tour",
+  "version": "0.1.0",
+  "description": "CuteCity guard-tour mother module: sites, checkpoints, tours, sealed check-ins, incidents, shifts, panic, tour compliance. Every mutating op seals a lucidota-receipt/1 envelope, hash-chained through the organelle.",
+  "contracts": [
+    {
+      "op": "register_site"
+    },
+    {
+      "op": "define_tour"
+    },
+    {
+      "op": "check_in"
+    },
+    {
+      "op": "report_incident"
+    },
+    {
+      "op": "clock_in"
+    },
+    {
+      "op": "clock_out"
+    },
+    {
+      "op": "panic"
+    },
+    {
+      "op": "tour_status"
+    },
+    {
+      "op": "missed_checkpoints"
+    }
+  ],
+  "authority": {
+    "may_read": [
+      "sites, checkpoints, tours, check-ins in organelle memory"
+    ],
+    "may_write": [
+      "check-ins, incidents, shifts, alerts as sealed receipts"
+    ],
+    "may_not": [
+      "network",
+      "filesystem",
+      "secret access",
+      "photo bytes (hashes only)"
+    ],
+    "fail_closed": true
+  },
+  "transports": [
+    "rust-native",
+    "json-stdio"
+  ],
+  "receipts": "every mutating op seals a lucidota-receipt/1 envelope; chain tip held in organelle memory",
+  "mutation_class": "Write",
+  "valence": "Candidate",
+  "capability": "guard-firm"
+}

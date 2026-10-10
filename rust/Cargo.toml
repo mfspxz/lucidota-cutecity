@@ -6,6 +6,7 @@ members = [
     "crates/cute-pub",
     "crates/cute-backup",
     "crates/cute-routes",
+    "crates/cute-guard",
 ]
 
 [workspace.dependencies]

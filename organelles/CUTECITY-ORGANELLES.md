@@ -62,6 +62,78 @@ Each organelle: 2-char codon `id()`, `handle(ctx, input) → ToolOutput`,
 - **Capability:** `operator` for live-export
 - **Inputs:** `{op: "dump_schema", snapshot}`, `{op: "restore_check", snapshot}`
 
+### `gd` — Guard Tour (cute-guard)
+
+- **Mutation:** Write (check-ins, incidents, alerts append sealed receipts)
+- **Valence:** Candidate — full organelle interface implemented
+  (`cute-guard/src/organelle.rs`, `cargo test -p cute-guard` 18/18);
+  host verification pending
+- **Capability:** `guard-firm`
+- **Implements:** `cute-guard` crate (model, receipt, engine, organelle);
+  SPEC.md next to the crate; manifest `src/manifests/gd.json` embedded
+- **Inputs:**
+  - `{op: "register_site", site, checkpoints[]}` → `{site_id}`
+  - `{op: "define_tour", tour}` → `{tour_id}`
+  - `{op: "check_in", checkin, scanned_tag?, sealed_ts}` → `{receipt, outcome}`
+    (tag/geofence verified; rejections sealed as established observations)
+  - `{op: "report_incident", incident, sealed_ts}` → `{receipt, incident_id}`
+    (opens as `claimed`; supervisor authorizes later)
+  - `{op: "clock_in", guard_id, site_id, ts, sealed_ts, location?}` → `{receipt}`
+  - `{op: "clock_out", guard_id, ts, sealed_ts}` → `{receipt}`
+  - `{op: "panic", guard_id, site_id, ts, sealed_ts}` → `{receipt, alert}`
+  - `{op: "tour_status", tour_id, now_ts}` → `{stops: [{checkpoint_id, state}]}`
+  - `{op: "missed_checkpoints", tour_id, guard_id, now_ts}` → `{alerts[]}`
+- **Behavioral equivalence:** `cargo test -p cute-guard` is the reference
+  behavior, including the full patrol cycle (clock in → check in → tour
+  status → clock out) producing one verifiable hash chain. Envelopes are
+  UNSIGNED in v0.1 (signing waits on the authority-key custody decision) —
+  the host must not treat the seal as an auth signature.
+- **Odin feed:** sealed check-in/alert receipts are the Odin Vancouver map
+  layer (guard positions, checkpoint pins, alert pins). Receipts only —
+  the map never gets raw location streams.
+
+## Mesh organelles (pouw-mesh)
+
+The PT proof-of-useful-work mesh as organelles. Contract: the unified
+organelle trait (`pouw-mesh/rs/src/organelle.rs` — merges the go50/krx
+`name/version/call/authority` shape with the CuteCity
+codon/mutation-class/valence/capability/input-schema shape). Manifests in
+`pouw-mesh/rs/src/manifests/*.json`, embedded at compile time.
+Reference behavior: `cargo test` in `pouw-mesh/rs` (28/28).
+
+### `sl` — Settlement Ladder
+
+- **Mutation:** Write (advances claim rungs) · **Valence:** Candidate · **Capability:** none
+- **Inputs:** `{op: "new", claim_id}`, `{op: "climb", claim_id, evidence_ok, endorsed}`,
+  `{op: "status", claim_id}` → `{rung}`. Never skips rungs.
+
+### `mr` — Merkle Roots
+
+- **Mutation:** ReadOnly · **Valence:** Candidate · **Capability:** none
+- **Inputs:** `{op: "root", leaves[]}` → `{root_hex}`, `{op: "prove", leaves[], index}` →
+  `{proof[]}`, `{op: "verify", leaf_hex, proof[], root_hex}` → `{ok}`.
+
+### `oc` — Oracle
+
+- **Mutation:** ReadOnly · **Valence:** Candidate · **Capability:** none
+- **Inputs:** `{op: "judge", tier: "local"|"mutual", claim, ...}` → `{verdict}`.
+  Tier-3 juries live in `jy`; `oc` refuses `mesh` tier (fail-closed routing).
+
+### `pc` — PT Coin
+
+- **Mutation:** Write · **Valence:** Candidate · **Capability:** `coin-minter`
+- **Inputs:** `{op: "mint", ...}`, `{op: "burn", ...}`, `{op: "balance", actor_id}`,
+  `{op: "audit"}` → `{conservation_ok}`. Mint economics pluggable (`Economics::rate_for`);
+  curve parameters are Zack's call.
+
+### `jy` — Jury
+
+- **Mutation:** Write (ballot commits) · **Valence:** Candidate · **Capability:** none
+- **Inputs:** `{op: "verify_selection", ...}` → `{ok}`, `{op: "commit_ballot", ...}` →
+  `{commit_hex}`, `{op: "tally", votes[]}` → `{useful, total, quorum}`,
+  `{op: "slashable", voted_useful, evidence_verifies}` → `{slashable}`.
+  Selection is private (needs secret keys); verification is public.
+
 ## Open
 
 - org-002 host rebuild (other domain) — these organelles plug in when ready.
