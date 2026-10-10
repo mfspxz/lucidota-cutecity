@@ -124,8 +124,8 @@ BUILD-PLAN and SHIP-REPORT claims reference dated artifacts. No oral footnotes f
 
 ## Commits
 
-- TBD — launch-check.py §16: a11y-audit advisory wiring, named consumer, advisory prefix.
-- TBD — any follow-up queued items from this audit.
+- `55306d9` — launch-check.py §16: a11y-audit advisory wiring, named consumer, advisory prefix; AUDIT-APPLICATION.md.
+- Follow-up queued items (bounds docs, uptime/tipjar wiring): NOT DONE in this pass.
 
 ## Test Counts
 
