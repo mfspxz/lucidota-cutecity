@@ -1,0 +1,36 @@
+{
+  "authority": {
+    "declared_valence": "candidate",
+    "granted_capabilities": [],
+    "mutation_class": "read_only",
+    "required_capability": null
+  },
+  "codon": "cc",
+  "contracts": [
+    {
+      "description": "Run the launch checklist",
+      "input_schema": {
+        "properties": {
+          "env": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "mutation_class": "read_only",
+      "op": "check_launch"
+    }
+  ],
+  "description": "Pre-launch checklist verification.",
+  "name": "cutecity-launch-check",
+  "receipt_policy": {
+    "algorithm": "sha256",
+    "chain": true,
+    "content_addressed": true
+  },
+  "schema_version": "1",
+  "transports": [
+    "unix_socket"
+  ],
+  "version": "1.0.0"
+}

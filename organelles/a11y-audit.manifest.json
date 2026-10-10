@@ -1,0 +1,36 @@
+{
+  "authority": {
+    "declared_valence": "candidate",
+    "granted_capabilities": [],
+    "mutation_class": "read_only",
+    "required_capability": null
+  },
+  "codon": "cc",
+  "contracts": [
+    {
+      "description": "Run the a11y audit",
+      "input_schema": {
+        "properties": {
+          "target": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "mutation_class": "read_only",
+      "op": "audit_a11y"
+    }
+  ],
+  "description": "Accessibility audit of cutecity pages.",
+  "name": "cutecity-a11y-audit",
+  "receipt_policy": {
+    "algorithm": "sha256",
+    "chain": true,
+    "content_addressed": true
+  },
+  "schema_version": "1",
+  "transports": [
+    "unix_socket"
+  ],
+  "version": "1.0.0"
+}

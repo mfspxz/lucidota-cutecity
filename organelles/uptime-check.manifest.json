@@ -1,0 +1,39 @@
+{
+  "authority": {
+    "declared_valence": "candidate",
+    "granted_capabilities": [
+      "cutecity.uptime-check:external"
+    ],
+    "mutation_class": "external_effect",
+    "required_capability": null
+  },
+  "codon": "cc",
+  "contracts": [
+    {
+      "description": "Run uptime checks",
+      "input_schema": {
+        "properties": {
+          "endpoints": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "mutation_class": "external_effect",
+      "op": "check_uptime",
+      "required_capability": "cutecity.uptime-check:external"
+    }
+  ],
+  "description": "Uptime checks against live endpoints.",
+  "name": "cutecity-uptime-check",
+  "receipt_policy": {
+    "algorithm": "sha256",
+    "chain": true,
+    "content_addressed": true
+  },
+  "schema_version": "1",
+  "transports": [
+    "unix_socket"
+  ],
+  "version": "1.0.0"
+}
