@@ -2,7 +2,7 @@
   "authority": {
     "declared_valence": "candidate",
     "granted_capabilities": [
-      "cutecity.uptime-check:external"
+      "cutecity.uptime-check.external"
     ],
     "mutation_class": "external_effect",
     "required_capability": null
@@ -21,7 +21,7 @@
       },
       "mutation_class": "external_effect",
       "op": "check_uptime",
-      "required_capability": "cutecity.uptime-check:external"
+      "required_capability": "cutecity.uptime-check.external"
     }
   ],
   "description": "Uptime checks against live endpoints.",
