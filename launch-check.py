@@ -81,9 +81,22 @@ for a in areas:
     ok = bool(m.get("voice_passed")) and bool((m.get("passed_by") or "").strip())
     check(f"voice-pass: {a}", ok, "CLEARED" if ok else "awaiting Zackary")
 
+# 16. Accessibility static audit (R-6: named consumer + explicit policy).
+# a11y-audit.py was a detector with no consumer (listed only in BUILD-PLAN).
+# Its named consumer is now THIS launch report. POLICY: advisory pre-launch —
+# the script fetches live pages and its own docstring admits full WCAG AA
+# needs a post-launch browser pass, so static-check failures are recorded,
+# not launch-blocking. Post-launch, the browser pass becomes a hard gate.
+rc, out, _ = run([sys.executable, os.path.join(ROOT, "a11y-audit.py")], timeout=180)
+a11y_issues = out.splitlines()[-2].split()[0] if out else "?"
+check("a11y: static audit (ADVISORY, see §16 policy)", rc == 0,
+      f"exit={rc} issues={a11y_issues}")
+
 fails = [r for r in results if not r["ok"]]
 # Voice-pass pendings are expected pre-launch; separate them in the summary.
-gate_blocks = [r for r in fails if not r["name"].startswith("voice-pass:")]
+# a11y advisory is also non-blocking by policy (see §16 comment above).
+advisory = ("voice-pass:", "a11y:")
+gate_blocks = [r for r in fails if not r["name"].startswith(advisory)]
 print(f"\n{len(results)-len(fails)}/{len(results)} checks green; "
-      f"{len(fails)-len(gate_blocks)} voice-pass pending; {len(gate_blocks)} hard failures")
+      f"{len(fails)-len(gate_blocks)} advisory pending; {len(gate_blocks)} hard failures")
 sys.exit(0 if not gate_blocks and not [f for f in fails if f["name"].startswith("voice-pass:")] else 1)
