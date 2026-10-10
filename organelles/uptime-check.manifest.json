@@ -7,7 +7,7 @@
     "mutation_class": "external_effect",
     "required_capability": null
   },
-  "codon": "cc",
+  "codon": "up",
   "contracts": [
     {
       "description": "Run uptime checks",

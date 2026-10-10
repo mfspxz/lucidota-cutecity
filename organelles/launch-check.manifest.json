@@ -5,7 +5,7 @@
     "mutation_class": "read_only",
     "required_capability": null
   },
-  "codon": "cc",
+  "codon": "lc",
   "contracts": [
     {
       "description": "Run the launch checklist",

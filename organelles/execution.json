@@ -33,7 +33,7 @@
     "policy": "subprocess-only"
   },
   "repo": "cutecity",
-  "repo_head": "939f444aada672e0075a400402a9e9667aabd3c0",
+  "repo_head": "aa422df86d9971a5568e213799ccecd227984ed8",
   "resource_envelope": {
     "cpu_cores": 2,
     "io_mb": 512,
@@ -46,5 +46,28 @@
     "note": "capability names only in manifests; secret values never in env, logs, receipts, or manifests",
     "policy": "vault-ref-only"
   },
-  "tier": "B"
+  "tier": "B",
+  "units": {
+    "cutecity-a11y-audit": {
+      "codon": "ay",
+      "wall_time_secs": 300
+    },
+    "cutecity-launch-check": {
+      "codon": "lc",
+      "wall_time_secs": 300
+    },
+    "cutecity-tipjar-check": {
+      "codon": "tj",
+      "note": "Solana RPC egress",
+      "wall_time_secs": 300
+    },
+    "cutecity-uptime-check": {
+      "codon": "up",
+      "wall_time_secs": 120
+    },
+    "cutecity-voice-pass": {
+      "codon": "vp",
+      "wall_time_secs": 300
+    }
+  }
 }
