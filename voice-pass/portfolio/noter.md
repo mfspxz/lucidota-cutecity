@@ -1,4 +1,4 @@
-# Noter / Percyphon — field notebook
+# Noter — field notebook
 
 **Status:** LAB · **Visibility:** public · **Slug:** `noter`
 
